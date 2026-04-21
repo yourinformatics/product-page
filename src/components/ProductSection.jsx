@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import plus from "../assets/images/icon-plus.svg"
 import minus from "../assets/images/icon-minus.svg"
 import cart from "../assets/images/icon-cart.svg"
 
 const ProductSection = () => {
+
+  const [quantity, setQuantity] = useState(0)
+
+  const increase = () => {
+    if (quantity < 10){
+      setQuantity(prev => prev + 1)
+    }
+  }
+
+    const decrease = () => {
+    if (quantity > 0){
+      setQuantity(prev => prev - 1)
+    }
+  }
+
   return (
     <div>
         
@@ -20,9 +35,9 @@ const ProductSection = () => {
 
       <div>
         <div>
-          <button><img src={minus} alt="Minus icon"/></button>
-          <span>0</span>
-          <button><img src={plus} alt="Plus icon" /></button>
+          <button onClick={decrease}><img src={minus} alt="Minus icon"/></button>
+          <span>{quantity}</span>
+          <button onClick={increase}><img src={plus} alt="Plus icon"/></button>
         </div>
         <button><img src={cart} alt="Cart icon" />Add to cart</button>
       </div>
